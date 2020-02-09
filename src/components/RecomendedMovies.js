@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 
-export const SimilarMovies = ({ movies }) => {
+export const RecomendedMovies = ({ movies }) => {
     return (
         <Fragment>
-            <h2 className="bg-success pt-2 pb-2 text-white mt-5 mb-3 text-center">Схожі фільми</h2>
+            <h2 className="bg-danger pt-2 pb-2 text-white mt-5 mb-3 text-center">Рекомендовані фільми</h2>
             <div className="row">
                 {movies.map(movie => (
                     <div key={movie.id} className="col-6 col-sm-4 col-lg-2">

@@ -1,10 +1,12 @@
 import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 
-export const Movies = ({ movies }) => {
+export const Movies = ({ movies, title }) => {
+    console.log()
+    const pageTitle = title ? title : 'Заголовок сторінки';
     return (
         <Fragment>
-            <h1 className="display-4 text-center mt-5 mb-5">Top Rated Movies</h1>
+            <h1 className="display-4 text-center mt-5 mb-4">{pageTitle}</h1>
             <div className="row">
                 {movies.map(movie => (
                     <div key={movie.id} className="col-6 col-sm-4 col-lg-2">

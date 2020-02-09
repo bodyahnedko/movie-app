@@ -4,24 +4,30 @@ import { Movies } from "../components/Movies";
 import { Loader } from "../components/Loader";
 import { Pagination } from "../components/Pagination";
 
-export const Home = props => {
-    const { loading, movies, fetchMovies, pages } = useContext(MoviedbContext);
+export const Search = props => {
+    const { loading, searchResult, searchMovies, pages } = useContext(MoviedbContext);
 
     const location = window.location.href;
 
     useEffect(() => {
-        fetchMovies(parseInt(props.match.params.number, 10));
+        searchMovies('Batman');
         // eslint-disable-next-line
     }, [location]);
-
+    console.log('ddddd', searchResult)
     return (
         <Fragment>
             {loading ? (
                 <Loader />
             ) : (
                 <Fragment>
-                    <Movies movies={movies} title="Популярні фільми" />
-                    <Pagination props={props} pages={pages} />
+                    <Movies movies={searchResult} title='Результати пошуку' />
+                    {
+                        pages > 1 ? (
+                            <Pagination props={props} pages={pages} />
+                        ) : (
+                            null
+                        )
+                    }
                 </Fragment>
             )}
         </Fragment>

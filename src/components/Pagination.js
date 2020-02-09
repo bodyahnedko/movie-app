@@ -17,7 +17,7 @@ export const Pagination = ({ props, pages }) => {
                     ({currentPage} page of {pages})
                 </strong>
                 <NavLink
-                    className={+currentPage >= 500 ? "disabled" : "active"}
+                    className={+currentPage >= pages ? "disabled" : "active"}
                     to={`/${+currentPage + 1}`}
                 >
                     Next
