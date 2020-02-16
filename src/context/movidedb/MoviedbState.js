@@ -9,7 +9,9 @@ import {
     SHOW_LOADER,
     FETCH_MOVIES_SIMMILAR,
     FETCH_MOVIES_RECOMENDED,
-    SEARCH_MOVIES
+    SEARCH_MOVIES,
+    ACTIVE_SEARCH,
+    DEACTIVE_SEARCH
 } from "../types";
 
 const api = {
@@ -28,6 +30,7 @@ export const MoviedbState = ({ children }) => {
         moviesRecomended: [],
         searchResult: [],
         loading: false,
+        activeSearch: false,
         pages: 0
     };
     const [state, dispatch] = useReducer(moviedbReducer, initialState);
@@ -35,6 +38,16 @@ export const MoviedbState = ({ children }) => {
     const showLoader = () =>
         dispatch({
             type: SHOW_LOADER
+        });
+    
+    const activateSearch = () =>
+        dispatch({
+            type: ACTIVE_SEARCH
+        });
+    
+    const deactivateSearch = () =>
+        dispatch({
+            type: DEACTIVE_SEARCH
         });
 
     // axios.interceptors.request.use(request => {
@@ -55,12 +68,14 @@ export const MoviedbState = ({ children }) => {
             
             if(res.data.results.length) {
                 // const payload = res.data.results.map(item => item.key );
+                // Ukraininian trailer
                 const payload = res.data.results[0].key;
                 dispatch({
                     type: FETCH_TRAILER,
                     payload
                 });
             } else {
+                // Other languages trailers
                 const trailerUrl = `${api.baseUrl}/3/movie/${videoID}/videos?api_key=${api.api_key}`;
                 const res = await axios.get(trailerUrl);
                 // const payload = res.data.results.map(item => item.key );
@@ -105,12 +120,12 @@ export const MoviedbState = ({ children }) => {
 
     const searchMovies = async query => {
         showLoader();
+        activateSearch();
 
         const url = `${api.baseUrl}/3/search/movie?api_key=${api.api_key}&language=${api.language}&query=${query}`;
 
         try {
             const res = await axios.get(url);
-            console.log(res);
             const payload = Object.keys(res.data.results).map(key => {
                 return {
                     ...res.data.results[key]
@@ -206,6 +221,8 @@ export const MoviedbState = ({ children }) => {
                 fetchSimilarMovies,
                 fetchRecomendedMovies,
                 searchMovies,
+                deactivateSearch,
+                activeSearch: state.activeSearch,
                 loading: state.loading,
                 searchResult: state.searchResult,
                 movies: state.movies,

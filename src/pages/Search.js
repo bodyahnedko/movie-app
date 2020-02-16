@@ -1,34 +1,36 @@
 import React, { Fragment, useContext, useEffect } from "react";
 import { MoviedbContext } from "../context/movidedb/moviedbContext";
-import { Movies } from "../components/Movies";
-import { Loader } from "../components/Loader";
-import { Pagination } from "../components/Pagination";
+import { SearchForm } from "../components/SearchForm";
+import { SearchResults } from "../components/SearchResults";
 
 export const Search = props => {
-    const { loading, searchResult, searchMovies, pages } = useContext(MoviedbContext);
-
-    const location = window.location.href;
+    
+    const {
+        searchMovies,
+        searchResult,
+        activeSearch,
+        deactivateSearch
+    } = useContext(MoviedbContext);
 
     useEffect(() => {
-        searchMovies('Batman');
-        // eslint-disable-next-line
-    }, [location]);
-    console.log('ddddd', searchResult)
+       // searchResult.splice(0, searchResult.length);
+    //    deactivateSearch();
+    },[]);
+
+    const searchHandler = event => {
+        event.preventDefault();
+        const input = document.getElementById('searchInput');
+        searchMovies(input.value);
+    }
+
     return (
         <Fragment>
-            {loading ? (
-                <Loader />
-            ) : (
-                <Fragment>
-                    <Movies movies={searchResult} title='Результати пошуку' />
-                    {
-                        pages > 1 ? (
-                            <Pagination props={props} pages={pages} />
-                        ) : (
-                            null
-                        )
-                    }
-                </Fragment>
+            <SearchForm submitHandler={searchHandler}/>
+            {activeSearch ? (
+                <SearchResults searchResult={searchResult}/>
+            )
+            : (
+                <h4 className="text-center mt-4 mb-4">Почніть пошук...</h4>
             )}
         </Fragment>
     );

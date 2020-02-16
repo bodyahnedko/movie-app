@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 
 export const Movies = ({ movies, title }) => {
-    console.log()
     const pageTitle = title ? title : 'Заголовок сторінки';
     return (
         <Fragment>

@@ -1,7 +1,12 @@
-import { FETCH_MOVIES, FETCH_MOVIE, FETCH_TRAILER, FETCH_MOVIES_SIMMILAR, SHOW_LOADER, FETCH_MOVIES_RECOMENDED, SEARCH_MOVIES } from "../types";
+import { FETCH_MOVIES, FETCH_MOVIE, FETCH_TRAILER, 
+         FETCH_MOVIES_SIMMILAR, SHOW_LOADER, FETCH_MOVIES_RECOMENDED, 
+         SEARCH_MOVIES, ACTIVE_SEARCH, DEACTIVE_SEARCH
+        } from "../types";
 
 const handlers = {
     [SHOW_LOADER]: state => ({ ...state, loading: true }),
+    [ACTIVE_SEARCH]: state => ({ ...state, activeSearch: true }),
+    [DEACTIVE_SEARCH]: state => ({ ...state, activeSearch: false }),
     [FETCH_MOVIES]: (state, { payload }) => ({
         ...state,
         movies: payload,
