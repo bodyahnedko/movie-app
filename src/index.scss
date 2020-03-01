@@ -34,45 +34,57 @@ img {
     margin: 20px 0;
     color: #000;
     cursor: pointer;
-    
+
     &:hover,
     &:focus {
         text-decoration: none;
     }
-	
+
     img {
         display: block;
         width: 100%;
-	}
-	
-	&__title {
-		padding: 0 15px;
-		margin-top: 15px;
-		font-size: 18px;
-	}
+    }
+
+    &__title {
+        padding: 0 15px;
+        margin-top: 15px;
+        font-size: 18px;
+        word-break: break-word;
+    }
 }
 
 .display-4 {
-    @media(max-width: 767px) {
+    @media (max-width: 767px) {
         font-size: 2.5em;
     }
 }
 
 .disabled {
     opacity: 0.7;
-    pointer-events: none;;
+    pointer-events: none;
 }
 
 iframe {
-    @media(max-width: 767px) {
-       height: 300px;
-    } 
-    
-    @media(max-width: 450px) {
+    @media (max-width: 767px) {
+        height: 300px;
+    }
+
+    @media (max-width: 450px) {
         height: 250px;
-    } 
+    }
 }
 
 .jumbotron {
     margin-bottom: 0;
+}
+
+.rating {
+    left: 10px;
+    top: 10px;
+}
+
+.goto {
+    &__input {
+        width: 100px;
+    }
 }

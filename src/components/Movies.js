@@ -11,13 +11,14 @@ export const Movies = ({ movies, title }) => {
                     <div key={movie.id} className="col-6 col-sm-4 col-lg-2">
                         <NavLink
                             to={`/movie/${movie.id}`}
-                            className="movie-item text-center"
+                            className="movie-item text-center position-relative"
                         >
                             <img
                                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                 alt={movie.title}
                             />
                             <h2 className="movie-item__title">{movie.title}</h2>
+                            <span className="rating position-absolute badge mr-1 badge-warning">{movie.vote_average}</span>
                         </NavLink>
                     </div>
                 ))}

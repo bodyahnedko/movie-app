@@ -9,7 +9,7 @@ export const Search = props => {
         searchMovies,
         searchResult,
         activeSearch,
-        deactivateSearch
+        // deactivateSearch
     } = useContext(MoviedbContext);
 
     useEffect(() => {

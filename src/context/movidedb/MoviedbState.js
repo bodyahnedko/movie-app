@@ -50,15 +50,15 @@ export const MoviedbState = ({ children }) => {
             type: DEACTIVE_SEARCH
         });
 
-    // axios.interceptors.request.use(request => {
-    //     console.log("Starting Request", request);
-    //     return request;
-    // });
+    axios.interceptors.request.use(request => {
+        console.log("Starting Request", request);
+        return request;
+    });
 
-    // axios.interceptors.response.use(response => {
-    //     console.log("Response:", response);
-    //     return response;
-    // });
+    axios.interceptors.response.use(response => {
+        console.log("Response:", response);
+        return response;
+    });
 
     const fetchTrailer = async (videoID, lang) => {
         const trailerUrl = `${api.baseUrl}/3/movie/${videoID}/videos?api_key=${api.api_key}&language=uk`;
