@@ -17,6 +17,7 @@ export const RecomendedMovies = ({ movies }) => {
                                 alt={movie.title}
                             />
                             <h2 className="movie-item__title">{movie.title}</h2>
+                            <span className="rating position-absolute badge mr-1 badge-warning">{movie.vote_average}</span>
                         </NavLink>
                     </div>
                 ))}
